@@ -33,11 +33,11 @@ The above configuration would generate the following classes:
   display: block;
 }
 
-.first-child\:block:first-child {
+.first-child\:block > :first-child {
   display: block;
 }
 
-.last-child\:block:last-child {
+.last-child\:block > :last-child {
   display: block;
 }
 
@@ -47,7 +47,7 @@ The above configuration would generate the following classes:
 Which you can then use in your HTML like this:
 
 ```html
-<ul class="children:block children:border-b children:border-black last-child:border-b-0">
+<ul class="children:block children:border-b children:border-gray last-child:border-b-0">
   <li>
     First item
   </li>
