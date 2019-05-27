@@ -1,7 +1,7 @@
 {
   "name": "tailwindcss-children",
   "version": "1.0.0",
-  "description": "Tailwind CSS plugin to add a variant that targets child elements, as well as first child and last child variants",
+  "description": "Tailwind CSS plugin to add a variant that targets child elements, as well as variants that target the first and the last child",
   "author": "Benoît Rouleau <benoit.rouleau@icloud.com>",
   "license": "ISC",
   "repository": {
