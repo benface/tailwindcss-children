@@ -73,8 +73,8 @@ test('the children variant can be generated before the default variant', () => {
   });
 });
 
-test('the first-child and last-child variants are working', () => {
-  return generatePluginCss(['children', 'default', 'first-child', 'last-child']).then(css => {
+test('all the variants are working', () => {
+  return generatePluginCss(['children', 'default', 'first-child', 'last-child', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active']).then(css => {
     expect(css).toMatchCss(`
       .children\\:block > * {
         display: block;
@@ -86,6 +86,30 @@ test('the first-child and last-child variants are working', () => {
         display: block;
       }
       .last-child\\:block > :last-child {
+        display: block;
+      }
+      .children\\:hover\\:block > :hover {
+        display: block;
+      }
+      .hover\\:block:hover {
+        display: block;
+      }
+      .children\\:focus\\:block > :focus {
+        display: block;
+      }
+      .focus\\:block:focus {
+        display: block;
+      }
+      .children\\:focus-within\\:block > :focus-within {
+        display: block;
+      }
+      .focus-within\\:block:focus-within {
+        display: block;
+      }
+      .children\\:active\\:block > :active {
+        display: block;
+      }
+      .active\\:block:active {
         display: block;
       }
     `);
@@ -93,7 +117,7 @@ test('the first-child and last-child variants are working', () => {
 });
 
 test('all variants can be chained with the responsive variant', () => {
-  return generatePluginCss(['children', 'default', 'first-child', 'last-child', 'responsive']).then(css => {
+  return generatePluginCss(['children', 'default', 'first-child', 'last-child', 'children-hover', 'children-focus', 'children-focus-within', 'children-active', 'responsive']).then(css => {
     expect(css).toMatchCss(`
       .children\\:block > * {
         display: block;
@@ -105,6 +129,18 @@ test('all variants can be chained with the responsive variant', () => {
         display: block;
       }
       .last-child\\:block > :last-child {
+        display: block;
+      }
+      .children\\:hover\\:block > :hover {
+        display: block;
+      }
+      .children\\:focus\\:block > :focus {
+        display: block;
+      }
+      .children\\:focus-within\\:block > :focus-within {
+        display: block;
+      }
+      .children\\:active\\:block > :active {
         display: block;
       }
       @media (min-width: 640px) {
@@ -118,6 +154,18 @@ test('all variants can be chained with the responsive variant', () => {
           display: block;
         }
         .sm\\:last-child\\:block > :last-child {
+          display: block;
+        }
+        .sm\\:children\\:hover\\:block > :hover {
+          display: block;
+        }
+        .sm\\:children\\:focus\\:block > :focus {
+          display: block;
+        }
+        .sm\\:children\\:focus-within\\:block > :focus-within {
+          display: block;
+        }
+        .sm\\:children\\:active\\:block > :active {
           display: block;
         }
       }

@@ -12,9 +12,7 @@ npm install tailwindcss-children
 // tailwind.config.js
 {
   variants: {
-    display: ['children', 'default', 'first-child', 'last-child', 'responsive'],
-    borderWidth: ['children', 'default', 'first-child', 'last-child', 'responsive'],
-    borderColor: ['children', 'default', 'first-child', 'last-child', 'responsive'],
+    display: ['children', 'default', 'first-child', 'last-child', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'responsive'],
   },
   plugins: [
     require('tailwindcss-children')(),
@@ -22,7 +20,7 @@ npm install tailwindcss-children
 }
 ```
 
-The above configuration would generate the following classes:
+The above configuration would generate the following CSS:
 
 ```css
 .children\:block > * {
@@ -41,13 +39,45 @@ The above configuration would generate the following classes:
   display: block;
 }
 
+.children\:hover\:block > :hover {
+  display: block;
+}
+
+.hover\:block:hover {
+  display: block;
+}
+
+.children\:focus\:block > :focus {
+  display: block;
+}
+
+.focus\:block:focus {
+  display: block;
+}
+
+.children\:focus-within\:block > :focus-within {
+  display: block;
+}
+
+.focus-within\:block:focus-within {
+  display: block;
+}
+
+.children\:active\:block > :active {
+  display: block;
+}
+
+.active\:block:active {
+  display: block;
+}
+
 /* etc. */
 ```
 
 Which you can then use in your HTML like this:
 
 ```html
-<ul class="children:block children:border-b children:border-gray last-child:border-b-0">
+<ul class="children:block children:border-b children:border-gray last-child:border-b-0 children:hover:bg-gray">
   <li>
     First item
   </li>
@@ -79,4 +109,4 @@ You can also override `children:` classes on specific children if needed:
 </ul>
 ```
 
-The above depends on the order of the generated CSS, so make sure to add the `default` variant *after* the `children` one in the array of variants.
+The above depends on the order of the generated CSS, so make sure to add the `default` variant *after* the `children` one in the array of variants (as well as the `hover` variant after the `children-hover` variant if you want to override a `children-hover:` utility, etc.).

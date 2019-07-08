@@ -8,6 +8,30 @@ module.exports = function() {
       });
     });
 
+    addVariant('children-hover', ({ modifySelectors, separator }) => {
+      modifySelectors(({ className }) => {
+        return `.${e(`children${separator}hover${separator}${className}`)} > :hover`;
+      });
+    });
+
+    addVariant('children-focus', ({ modifySelectors, separator }) => {
+      modifySelectors(({ className }) => {
+        return `.${e(`children${separator}focus${separator}${className}`)} > :focus`;
+      });
+    });
+
+    addVariant('children-focus-within', ({ modifySelectors, separator }) => {
+      modifySelectors(({ className }) => {
+        return `.${e(`children${separator}focus-within${separator}${className}`)} > :focus-within`;
+      });
+    });
+
+    addVariant('children-active', ({ modifySelectors, separator }) => {
+      modifySelectors(({ className }) => {
+        return `.${e(`children${separator}active${separator}${className}`)} > :active`;
+      });
+    });
+
     addVariant('first-child', ({ modifySelectors, separator }) => {
       modifySelectors(({ className }) => {
         return `.${e(`first-child${separator}${className}`)} > :first-child`;
