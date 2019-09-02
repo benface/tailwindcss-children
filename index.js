@@ -32,6 +32,18 @@ module.exports = function() {
       });
     });
 
+    addVariant('odd-children', ({ modifySelectors, separator }) => {
+      modifySelectors(({ className }) => {
+        return `.${e(`odd-children${separator}${className}`)} > :nth-child(odd)`;
+      });
+    });
+
+    addVariant('even-children', ({ modifySelectors, separator }) => {
+      modifySelectors(({ className }) => {
+        return `.${e(`even-children${separator}${className}`)} > :nth-child(even)`;
+      });
+    });
+
     addVariant('first-child', ({ modifySelectors, separator }) => {
       modifySelectors(({ className }) => {
         return `.${e(`first-child${separator}${className}`)} > :first-child`;

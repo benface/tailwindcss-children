@@ -74,12 +74,18 @@ test('the children variant can be generated before the default variant', () => {
 });
 
 test('all the variants are working', () => {
-  return generatePluginCss(['children', 'default', 'first-child', 'last-child', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active']).then(css => {
+  return generatePluginCss(['children', 'default', 'odd-children', 'even-children', 'first-child', 'last-child', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active']).then(css => {
     expect(css).toMatchCss(`
       .children\\:block > * {
         display: block;
       }
       .block {
+        display: block;
+      }
+      .odd-children\\:block > :nth-child(odd) {
+        display: block;
+      }
+      .even-children\\:block > :nth-child(even) {
         display: block;
       }
       .first-child\\:block > :first-child {
@@ -117,12 +123,18 @@ test('all the variants are working', () => {
 });
 
 test('all variants can be chained with the responsive variant', () => {
-  return generatePluginCss(['children', 'default', 'first-child', 'last-child', 'children-hover', 'children-focus', 'children-focus-within', 'children-active', 'responsive']).then(css => {
+  return generatePluginCss(['children', 'default', 'odd-children', 'even-children', 'first-child', 'last-child', 'children-hover', 'children-focus', 'children-focus-within', 'children-active', 'responsive']).then(css => {
     expect(css).toMatchCss(`
       .children\\:block > * {
         display: block;
       }
       .block {
+        display: block;
+      }
+      .odd-children\\:block > :nth-child(odd) {
+        display: block;
+      }
+      .even-children\\:block > :nth-child(even) {
         display: block;
       }
       .first-child\\:block > :first-child {
@@ -148,6 +160,12 @@ test('all variants can be chained with the responsive variant', () => {
           display: block;
         }
         .sm\\:block {
+          display: block;
+        }
+        .sm\\:odd-children\\:block > :nth-child(odd) {
+          display: block;
+        }
+        .sm\\:even-children\\:block > :nth-child(even) {
           display: block;
         }
         .sm\\:first-child\\:block > :first-child {
