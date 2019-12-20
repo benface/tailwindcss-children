@@ -32,6 +32,18 @@ module.exports = function() {
       });
     });
 
+    addVariant('children-visited', ({ modifySelectors, separator }) => {
+      modifySelectors(({ className }) => {
+        return `.${e(`children${separator}visited${separator}${className}`)} > :visited`;
+      });
+    });
+
+    addVariant('children-disabled', ({ modifySelectors, separator }) => {
+      modifySelectors(({ className }) => {
+        return `.${e(`children${separator}disabled${separator}${className}`)} > :disabled`;
+      });
+    });
+
     addVariant('odd-children', ({ modifySelectors, separator }) => {
       modifySelectors(({ className }) => {
         return `.${e(`odd-children${separator}${className}`)} > :nth-child(odd)`;
