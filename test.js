@@ -15,7 +15,7 @@ const generatePluginCss = (variants = []) => {
       corePlugins: false,
       plugins: [
         childrenPlugin(),
-        ({ e, addUtilities }) => {
+        ({ addUtilities }) => {
           addUtilities({
             '.block': {
               'display': 'block',
