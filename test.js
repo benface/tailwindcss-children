@@ -4,7 +4,7 @@ const postcss = require('postcss');
 const tailwindcss = require('tailwindcss');
 const childrenPlugin = require('./index.js');
 
-const generatePluginCss = (variants = []) => {
+const generatePluginCss = (variants = [], tailwindOptions = {}, css = null) => {
   return postcss(
     tailwindcss({
       theme: {
@@ -16,13 +16,14 @@ const generatePluginCss = (variants = []) => {
       plugins: [
         childrenPlugin(),
         ({ addUtilities }) => {
-          addUtilities({
+          addUtilities(css ? css : {
             '.block': {
               'display': 'block',
             },
           }, variants);
         },
       ],
+      ...tailwindOptions,
     })
   )
   .process('@tailwind utilities', {
@@ -190,3 +191,44 @@ test('all variants can be chained with the responsive variant', () => {
     `);
   });
 });
+
+test('the variants work well with Tailwind’s prefix option', () => {
+  return generatePluginCss(['children', 'default', 'first-child'], {
+    prefix: 'tw-',
+  }).then(css => {
+    expect(css).toMatchCss(`
+      .children\\:tw-block > * {
+        display: block;
+      }
+      .tw-block {
+        display: block;
+      }
+      .first-child\\:tw-block > :first-child {
+        display: block;
+      }
+    `);
+  });
+});
+
+/* TODO: This test fails */
+/*
+test('the variants work on utilities that include pseudo-elements', () => {
+  return generatePluginCss(['children', 'default', 'first-child'], {}, {
+    '.placeholder-gray-400::placeholder': {
+      'color': '#cbd5e0',
+    },
+  }).then(css => {
+    expect(css).toMatchCss(`
+      .children\\:placeholder-gray-400 > *::placeholder {
+        color: #cbd5e0;
+      }
+      .placeholder-gray-400::placeholder {
+        color: #cbd5e0;
+      }
+      .first-child\\:placeholder-gray-400 > :first-child::placeholder {
+        color: #cbd5e0;
+      }
+    `);
+  });
+});
+*/
