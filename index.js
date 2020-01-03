@@ -16,7 +16,7 @@ const childrenVariant = function(pseudoClass = null, childrenSelector = null) {
   };
 };
 
-module.exports = plugin(function({ addVariant, e }) {
+module.exports = plugin(function({ addVariant }) {
   addVariant('children', childrenVariant());
   addVariant('children-hover', childrenVariant('hover'));
   addVariant('children-focus', childrenVariant('focus'));
