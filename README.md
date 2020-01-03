@@ -12,7 +12,7 @@ npm install tailwindcss-children
 // tailwind.config.js
 module.exports = {
   variants: {
-    display: ['children', 'default', 'odd-children', 'even-children', 'first-child', 'last-child', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled', 'responsive'],
+    display: ['children', 'default', 'children-odd', 'children-even', 'children-first', 'children-last', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled', 'responsive'],
   },
   plugins: [
     require('tailwindcss-children')(),
@@ -31,19 +31,19 @@ The above configuration would generate the following CSS:
   display: block;
 }
 
-.odd-children\:block > :nth-child(odd) {
+.children\:odd\:block > :nth-child(odd) {
   display: block;
 }
 
-.even-children\:block > :nth-child(even) {
+.children\:even\:block > :nth-child(even) {
   display: block;
 }
 
-.first-child\:block > :first-child {
+.children\:first\:block > :first-child {
   display: block;
 }
 
-.last-child\:block > :last-child {
+.children\:last\:block > :last-child {
   display: block;
 }
 
@@ -101,7 +101,7 @@ The above configuration would generate the following CSS:
 Which you can then use in your HTML like this:
 
 ```html
-<ul class="children:block children:border-b children:border-gray last-child:border-b-0 children:hover:bg-gray">
+<ul class="children:block children:border-b children:border-gray children:last:border-b-0 children:hover:bg-gray">
   <li>
     First item
   </li>

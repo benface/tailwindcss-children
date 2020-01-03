@@ -12,7 +12,8 @@
     "release": "f(){ release-it $1 && github-release-from-changelog ;};f"
   },
   "dependencies": {
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "postcss-selector-parser": "^6.0.2"
   },
   "devDependencies": {
     "github-release-from-changelog": "^2.1.0",

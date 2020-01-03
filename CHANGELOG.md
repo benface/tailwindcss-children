@@ -9,6 +9,14 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 ### Changed
 - Changed to use Tailwind 1.2’s new plugin definition syntax
+- Changed the name and class prefix of the following variants:
+  - `odd-children` is now `children-odd` and its class prefix is now `children:odd:`
+  - `even-children` is now `children-even` and its class prefix is now `children:even:`
+  - `first-child` is now `children-first` and its class prefix is now `children:first:`
+  - `last-child` is now `children-last` and its class prefix is now `children:last:`
+
+### Fixed
+- Fixed an issue where the variants didn’t work as expected on utilities with pseudo-elements
 
 ## [1.3.0] - 2019-12-20
 

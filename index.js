@@ -1,70 +1,31 @@
 const plugin = require('tailwindcss/plugin');
 const _ = require('lodash');
+const selectorParser = require('postcss-selector-parser');
+
+const childrenVariant = function(pseudoClass = null, childrenSelector = null) {
+  childrenSelector = childrenSelector ? childrenSelector : (pseudoClass ? `:${pseudoClass}` : '*');
+  return ({ modifySelectors, separator }) => {
+    return modifySelectors(({ selector }) => {
+      return selectorParser(selectors => {
+        selectors.walkClasses(classNode => {
+          classNode.value = `children${pseudoClass ? (separator + pseudoClass) : ''}${separator}${classNode.value}`;
+          classNode.parent.insertAfter(classNode, selectorParser().astSync(` > ${childrenSelector}`));
+        });
+      }).processSync(selector);
+    });
+  };
+};
 
 module.exports = plugin(function({ addVariant, e }) {
-  addVariant('children', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.${e(`children${separator}${className}`)} > *`;
-    });
-  });
-
-  addVariant('children-hover', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.${e(`children${separator}hover${separator}${className}`)} > :hover`;
-    });
-  });
-
-  addVariant('children-focus', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.${e(`children${separator}focus${separator}${className}`)} > :focus`;
-    });
-  });
-
-  addVariant('children-focus-within', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.${e(`children${separator}focus-within${separator}${className}`)} > :focus-within`;
-    });
-  });
-
-  addVariant('children-active', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.${e(`children${separator}active${separator}${className}`)} > :active`;
-    });
-  });
-
-  addVariant('children-visited', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.${e(`children${separator}visited${separator}${className}`)} > :visited`;
-    });
-  });
-
-  addVariant('children-disabled', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.${e(`children${separator}disabled${separator}${className}`)} > :disabled`;
-    });
-  });
-
-  addVariant('odd-children', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.${e(`odd-children${separator}${className}`)} > :nth-child(odd)`;
-    });
-  });
-
-  addVariant('even-children', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.${e(`even-children${separator}${className}`)} > :nth-child(even)`;
-    });
-  });
-
-  addVariant('first-child', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.${e(`first-child${separator}${className}`)} > :first-child`;
-    });
-  });
-
-  addVariant('last-child', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.${e(`last-child${separator}${className}`)} > :last-child`;
-    });
-  });
+  addVariant('children', childrenVariant());
+  addVariant('children-hover', childrenVariant('hover'));
+  addVariant('children-focus', childrenVariant('focus'));
+  addVariant('children-focus-within', childrenVariant('focus-within'));
+  addVariant('children-active', childrenVariant('active'));
+  addVariant('children-visited', childrenVariant('visited'));
+  addVariant('children-disabled', childrenVariant('disabled'));
+  addVariant('children-odd', childrenVariant('odd', ':nth-child(odd)'));
+  addVariant('children-even', childrenVariant('even', ':nth-child(even)'));
+  addVariant('children-first', childrenVariant('first', ':first-child'));
+  addVariant('children-last', childrenVariant('last', ':last-child'));
 });

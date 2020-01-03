@@ -75,7 +75,7 @@ test('the children variant can be generated before the default variant', () => {
 });
 
 test('all the variants are working', () => {
-  return generatePluginCss(['children', 'default', 'odd-children', 'even-children', 'first-child', 'last-child', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled']).then(css => {
+  return generatePluginCss(['children', 'default', 'children-odd', 'children-even', 'children-first', 'children-last', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled']).then(css => {
     expect(css).toMatchCss(`
       .children\\:block > * {
         display: block;
@@ -83,16 +83,16 @@ test('all the variants are working', () => {
       .block {
         display: block;
       }
-      .odd-children\\:block > :nth-child(odd) {
+      .children\\:odd\\:block > :nth-child(odd) {
         display: block;
       }
-      .even-children\\:block > :nth-child(even) {
+      .children\\:even\\:block > :nth-child(even) {
         display: block;
       }
-      .first-child\\:block > :first-child {
+      .children\\:first\\:block > :first-child {
         display: block;
       }
-      .last-child\\:block > :last-child {
+      .children\\:last\\:block > :last-child {
         display: block;
       }
       .children\\:hover\\:block > :hover {
@@ -136,7 +136,7 @@ test('all the variants are working', () => {
 });
 
 test('all variants can be chained with the responsive variant', () => {
-  return generatePluginCss(['children', 'default', 'odd-children', 'even-children', 'first-child', 'last-child', 'children-hover', 'children-focus', 'children-focus-within', 'children-active', 'children-visited', 'children-disabled', 'responsive']).then(css => {
+  return generatePluginCss(['children', 'default', 'children-odd', 'children-even', 'children-first', 'children-last', 'children-hover', 'children-focus', 'children-focus-within', 'children-active', 'children-visited', 'children-disabled', 'responsive']).then(css => {
     expect(css).toMatchCss(`
       .children\\:block > * {
         display: block;
@@ -144,16 +144,16 @@ test('all variants can be chained with the responsive variant', () => {
       .block {
         display: block;
       }
-      .odd-children\\:block > :nth-child(odd) {
+      .children\\:odd\\:block > :nth-child(odd) {
         display: block;
       }
-      .even-children\\:block > :nth-child(even) {
+      .children\\:even\\:block > :nth-child(even) {
         display: block;
       }
-      .first-child\\:block > :first-child {
+      .children\\:first\\:block > :first-child {
         display: block;
       }
-      .last-child\\:block > :last-child {
+      .children\\:last\\:block > :last-child {
         display: block;
       }
       .children\\:hover\\:block > :hover {
@@ -181,16 +181,16 @@ test('all variants can be chained with the responsive variant', () => {
         .sm\\:block {
           display: block;
         }
-        .sm\\:odd-children\\:block > :nth-child(odd) {
+        .sm\\:children\\:odd\\:block > :nth-child(odd) {
           display: block;
         }
-        .sm\\:even-children\\:block > :nth-child(even) {
+        .sm\\:children\\:even\\:block > :nth-child(even) {
           display: block;
         }
-        .sm\\:first-child\\:block > :first-child {
+        .sm\\:children\\:first\\:block > :first-child {
           display: block;
         }
-        .sm\\:last-child\\:block > :last-child {
+        .sm\\:children\\:last\\:block > :last-child {
           display: block;
         }
         .sm\\:children\\:hover\\:block > :hover {
@@ -217,7 +217,7 @@ test('all variants can be chained with the responsive variant', () => {
 });
 
 test('the variants work well with Tailwind’s prefix option', () => {
-  return generatePluginCss(['children', 'default', 'first-child'], {
+  return generatePluginCss(['children', 'default', 'children-first'], {
     prefix: 'tw-',
   }).then(css => {
     expect(css).toMatchCss(`
@@ -227,17 +227,15 @@ test('the variants work well with Tailwind’s prefix option', () => {
       .tw-block {
         display: block;
       }
-      .first-child\\:tw-block > :first-child {
+      .children\\:first\\:tw-block > :first-child {
         display: block;
       }
     `);
   });
 });
 
-/* TODO: This test fails */
-/*
 test('the variants work on utilities that include pseudo-elements', () => {
-  return generatePluginCss(['children', 'default', 'first-child'], {}, {
+  return generatePluginCss(['children', 'default', 'children-first'], {}, {
     '.placeholder-gray-400::placeholder': {
       'color': '#cbd5e0',
     },
@@ -249,10 +247,9 @@ test('the variants work on utilities that include pseudo-elements', () => {
       .placeholder-gray-400::placeholder {
         color: #cbd5e0;
       }
-      .first-child\\:placeholder-gray-400 > :first-child::placeholder {
+      .children\\:first\\:placeholder-gray-400 > :first-child::placeholder {
         color: #cbd5e0;
       }
     `);
   });
 });
-*/
