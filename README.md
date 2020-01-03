@@ -10,14 +10,14 @@ npm install tailwindcss-children
 
 ```js
 // tailwind.config.js
-{
+module.exports = {
   variants: {
     display: ['children', 'default', 'odd-children', 'even-children', 'first-child', 'last-child', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled', 'responsive'],
   },
   plugins: [
     require('tailwindcss-children')(),
   ],
-}
+};
 ```
 
 The above configuration would generate the following CSS:

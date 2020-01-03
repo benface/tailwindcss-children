@@ -14,7 +14,7 @@ const generatePluginCss = (variants = [], tailwindOptions = {}, css = null) => {
       },
       corePlugins: false,
       plugins: [
-        childrenPlugin(),
+        childrenPlugin,
         ({ addUtilities }) => {
           addUtilities(css ? css : {
             '.block': {
