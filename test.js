@@ -75,7 +75,7 @@ test('the children variant can be generated before the default variant', () => {
 });
 
 test('all the variants are working', () => {
-  return generatePluginCss(['children', 'default', 'children-odd', 'children-even', 'children-first', 'children-last', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled']).then(css => {
+  return generatePluginCss(['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled']).then(css => {
     expect(css).toMatchCss(`
       .children\\:block > * {
         display: block;
@@ -83,16 +83,16 @@ test('all the variants are working', () => {
       .block {
         display: block;
       }
-      .children\\:odd\\:block > :nth-child(odd) {
-        display: block;
-      }
-      .children\\:even\\:block > :nth-child(even) {
-        display: block;
-      }
       .children\\:first\\:block > :first-child {
         display: block;
       }
       .children\\:last\\:block > :last-child {
+        display: block;
+      }
+      .children\\:odd\\:block > :nth-child(odd) {
+        display: block;
+      }
+      .children\\:even\\:block > :nth-child(even) {
         display: block;
       }
       .children\\:hover\\:block > :hover {
@@ -136,7 +136,7 @@ test('all the variants are working', () => {
 });
 
 test('all variants can be chained with the responsive variant', () => {
-  return generatePluginCss(['children', 'default', 'children-odd', 'children-even', 'children-first', 'children-last', 'children-hover', 'children-focus', 'children-focus-within', 'children-active', 'children-visited', 'children-disabled', 'responsive']).then(css => {
+  return generatePluginCss(['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-hover', 'children-focus', 'children-focus-within', 'children-active', 'children-visited', 'children-disabled', 'responsive']).then(css => {
     expect(css).toMatchCss(`
       .children\\:block > * {
         display: block;
@@ -144,16 +144,16 @@ test('all variants can be chained with the responsive variant', () => {
       .block {
         display: block;
       }
-      .children\\:odd\\:block > :nth-child(odd) {
-        display: block;
-      }
-      .children\\:even\\:block > :nth-child(even) {
-        display: block;
-      }
       .children\\:first\\:block > :first-child {
         display: block;
       }
       .children\\:last\\:block > :last-child {
+        display: block;
+      }
+      .children\\:odd\\:block > :nth-child(odd) {
+        display: block;
+      }
+      .children\\:even\\:block > :nth-child(even) {
         display: block;
       }
       .children\\:hover\\:block > :hover {
@@ -181,16 +181,16 @@ test('all variants can be chained with the responsive variant', () => {
         .sm\\:block {
           display: block;
         }
-        .sm\\:children\\:odd\\:block > :nth-child(odd) {
-          display: block;
-        }
-        .sm\\:children\\:even\\:block > :nth-child(even) {
-          display: block;
-        }
         .sm\\:children\\:first\\:block > :first-child {
           display: block;
         }
         .sm\\:children\\:last\\:block > :last-child {
+          display: block;
+        }
+        .sm\\:children\\:odd\\:block > :nth-child(odd) {
+          display: block;
+        }
+        .sm\\:children\\:even\\:block > :nth-child(even) {
           display: block;
         }
         .sm\\:children\\:hover\\:block > :hover {

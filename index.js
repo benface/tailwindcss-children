@@ -24,8 +24,8 @@ module.exports = plugin(function({ addVariant }) {
   addVariant('children-active', childrenVariant('active'));
   addVariant('children-visited', childrenVariant('visited'));
   addVariant('children-disabled', childrenVariant('disabled'));
-  addVariant('children-odd', childrenVariant('odd', ':nth-child(odd)'));
-  addVariant('children-even', childrenVariant('even', ':nth-child(even)'));
   addVariant('children-first', childrenVariant('first', ':first-child'));
   addVariant('children-last', childrenVariant('last', ':last-child'));
+  addVariant('children-odd', childrenVariant('odd', ':nth-child(odd)'));
+  addVariant('children-even', childrenVariant('even', ':nth-child(even)'));
 });

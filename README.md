@@ -12,7 +12,7 @@ npm install tailwindcss-children
 // tailwind.config.js
 module.exports = {
   variants: {
-    display: ['children', 'default', 'children-odd', 'children-even', 'children-first', 'children-last', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled', 'responsive'],
+    display: ['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled', 'responsive'],
   },
   plugins: [
     require('tailwindcss-children')(),
@@ -31,19 +31,19 @@ The above configuration would generate the following CSS:
   display: block;
 }
 
-.children\:odd\:block > :nth-child(odd) {
-  display: block;
-}
-
-.children\:even\:block > :nth-child(even) {
-  display: block;
-}
-
 .children\:first\:block > :first-child {
   display: block;
 }
 
 .children\:last\:block > :last-child {
+  display: block;
+}
+
+.children\:odd\:block > :nth-child(odd) {
+  display: block;
+}
+
+.children\:even\:block > :nth-child(even) {
   display: block;
 }
 
