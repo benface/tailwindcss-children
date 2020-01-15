@@ -75,7 +75,7 @@ test('the children variant can be generated before the default variant', () => {
 });
 
 test('all the variants are working', () => {
-  return generatePluginCss(['children', 'default', 'odd-children', 'even-children', 'first-child', 'last-child', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled']).then(css => {
+  return generatePluginCss(['children', 'default', 'odd-children', 'even-children', 'first-child', 'last-child', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled', 'owl']).then(css => {
     expect(css).toMatchCss(`
       .children\\:block > * {
         display: block;
@@ -131,12 +131,15 @@ test('all the variants are working', () => {
       .disabled\\:block:disabled {
         display: block;
       }
+      .owl\\:block > * + * {
+        display: block
+      }
     `);
   });
 });
 
 test('all variants can be chained with the responsive variant', () => {
-  return generatePluginCss(['children', 'default', 'odd-children', 'even-children', 'first-child', 'last-child', 'children-hover', 'children-focus', 'children-focus-within', 'children-active', 'children-visited', 'children-disabled', 'responsive']).then(css => {
+  return generatePluginCss(['children', 'default', 'odd-children', 'even-children', 'first-child', 'last-child', 'children-hover', 'children-focus', 'children-focus-within', 'children-active', 'children-visited', 'children-disabled', 'responsive', 'owl']).then(css => {
     expect(css).toMatchCss(`
       .children\\:block > * {
         display: block;
@@ -174,6 +177,9 @@ test('all variants can be chained with the responsive variant', () => {
       .children\\:disabled\\:block > :disabled {
         display: block;
       }
+      .owl\\:block > * + * {
+        display: block
+      }
       @media (min-width: 640px) {
         .sm\\:children\\:block > * {
           display: block;
@@ -210,6 +216,9 @@ test('all variants can be chained with the responsive variant', () => {
         }
         .sm\\:children\\:disabled\\:block > :disabled {
           display: block;
+        }
+        .sm\\:owl\\:block > * + * {
+          display: block
         }
       }
     `);

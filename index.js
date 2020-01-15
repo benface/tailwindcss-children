@@ -67,5 +67,11 @@ module.exports = function() {
         return `.${e(`last-child${separator}${className}`)} > :last-child`;
       });
     });
+
+    addVariant('owl', ({ modifySelectors, separator }) => {
+      modifySelectors(({ className }) => {
+        return `.${e(`owl${separator}${className}`)} > * + *`;
+      });
+    });
   };
 };
