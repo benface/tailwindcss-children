@@ -2,13 +2,14 @@ const plugin = require('tailwindcss/plugin');
 const _ = require('lodash');
 const selectorParser = require('postcss-selector-parser');
 
-const childrenVariant = function(pseudoClass = null, childrenSelector = null) {
-  childrenSelector = childrenSelector ? childrenSelector : (pseudoClass ? `:${pseudoClass}` : '*');
+const childrenVariant = function(pseudoClass = null, childrenSelector = null, classPrefix = null) {
   return ({ modifySelectors, separator }) => {
+    childrenSelector = childrenSelector ? childrenSelector : (pseudoClass ? `:${pseudoClass}` : '*');
+    classPrefix = classPrefix ? classPrefix : `children${pseudoClass ? (separator + pseudoClass) : ''}`;
     return modifySelectors(({ selector }) => {
       return selectorParser(selectors => {
         selectors.walkClasses(classNode => {
-          classNode.value = `children${pseudoClass ? (separator + pseudoClass) : ''}${separator}${classNode.value}`;
+          classNode.value = `${classPrefix}${separator}${classNode.value}`;
           classNode.parent.insertAfter(classNode, selectorParser().astSync(` > ${childrenSelector}`));
         });
       }).processSync(selector);
@@ -28,5 +29,5 @@ module.exports = plugin(function({ addVariant }) {
   addVariant('children-last', childrenVariant('last', ':last-child'));
   addVariant('children-odd', childrenVariant('odd', ':nth-child(odd)'));
   addVariant('children-even', childrenVariant('even', ':nth-child(even)'));
-  addVariant('children-owl', childrenVariant('owl', '* + *'));
+  addVariant('owl', childrenVariant(null, '* + *', 'owl'));
 });
