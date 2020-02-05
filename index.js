@@ -18,15 +18,15 @@ const childrenVariant = function(pseudoClass = null, childrenSelector = null) {
 
 module.exports = plugin(function({ addVariant }) {
   addVariant('children', childrenVariant());
+  addVariant('children-first', childrenVariant('first', ':first-child'));
+  addVariant('children-last', childrenVariant('last', ':last-child'));
+  addVariant('children-odd', childrenVariant('odd', ':nth-child(odd)'));
+  addVariant('children-even', childrenVariant('even', ':nth-child(even)'));
+  addVariant('children-not-first', childrenVariant('not-first', '* + *'));
   addVariant('children-hover', childrenVariant('hover'));
   addVariant('children-focus', childrenVariant('focus'));
   addVariant('children-focus-within', childrenVariant('focus-within'));
   addVariant('children-active', childrenVariant('active'));
   addVariant('children-visited', childrenVariant('visited'));
   addVariant('children-disabled', childrenVariant('disabled'));
-  addVariant('children-first', childrenVariant('first', ':first-child'));
-  addVariant('children-last', childrenVariant('last', ':last-child'));
-  addVariant('children-odd', childrenVariant('odd', ':nth-child(odd)'));
-  addVariant('children-even', childrenVariant('even', ':nth-child(even)'));
-  addVariant('children-not-first', childrenVariant('not-first', '* + *'));
 });

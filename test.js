@@ -75,7 +75,7 @@ test('the children variant can be generated before the default variant', () => {
 });
 
 test('all the variants are working', () => {
-  return generatePluginCss(['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled', 'children-not-first']).then(css => {
+  return generatePluginCss(['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-not-first', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled']).then(css => {
     expect(css).toMatchCss(`
       .children\\:block > * {
         display: block;
@@ -93,6 +93,9 @@ test('all the variants are working', () => {
         display: block;
       }
       .children\\:even\\:block > :nth-child(even) {
+        display: block;
+      }
+      .children\\:not-first\\:block > * + * {
         display: block;
       }
       .children\\:hover\\:block > :hover {
@@ -131,15 +134,12 @@ test('all the variants are working', () => {
       .disabled\\:block:disabled {
         display: block;
       }
-      .children\\:not-first\\:block > * + * {
-        display: block;
-      }
     `);
   });
 });
 
 test('all variants can be chained with the responsive variant', () => {
-  return generatePluginCss(['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-hover', 'children-focus', 'children-focus-within', 'children-active', 'children-visited', 'children-disabled', 'children-not-first', 'responsive']).then(css => {
+  return generatePluginCss(['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-not-first', 'children-hover', 'children-focus', 'children-focus-within', 'children-active', 'children-visited', 'children-disabled', 'responsive']).then(css => {
     expect(css).toMatchCss(`
       .children\\:block > * {
         display: block;
@@ -159,6 +159,9 @@ test('all variants can be chained with the responsive variant', () => {
       .children\\:even\\:block > :nth-child(even) {
         display: block;
       }
+      .children\\:not-first\\:block > * + * {
+        display: block;
+      }
       .children\\:hover\\:block > :hover {
         display: block;
       }
@@ -175,9 +178,6 @@ test('all variants can be chained with the responsive variant', () => {
         display: block;
       }
       .children\\:disabled\\:block > :disabled {
-        display: block;
-      }
-      .children\\:not-first\\:block > * + * {
         display: block;
       }
       @media (min-width: 640px) {
@@ -199,6 +199,9 @@ test('all variants can be chained with the responsive variant', () => {
         .sm\\:children\\:even\\:block > :nth-child(even) {
           display: block;
         }
+        .sm\\:children\\:not-first\\:block > * + * {
+          display: block;
+        }
         .sm\\:children\\:hover\\:block > :hover {
           display: block;
         }
@@ -215,9 +218,6 @@ test('all variants can be chained with the responsive variant', () => {
           display: block;
         }
         .sm\\:children\\:disabled\\:block > :disabled {
-          display: block;
-        }
-        .sm\\:children\\:not-first\\:block > * + * {
           display: block;
         }
       }

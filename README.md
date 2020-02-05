@@ -12,7 +12,7 @@ npm install tailwindcss-children
 // tailwind.config.js
 module.exports = {
   variants: {
-    display: ['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled', 'responsive'],
+    display: ['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-not-first', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled', 'responsive'],
   },
   plugins: [
     require('tailwindcss-children'),
@@ -44,6 +44,10 @@ The above configuration would generate the following CSS:
 }
 
 .children\:even\:block > :nth-child(even) {
+  display: block;
+}
+
+.children\:not-first\:block > * + * {
   display: block;
 }
 
@@ -101,7 +105,7 @@ The above configuration would generate the following CSS:
 Which you can then use in your HTML like this:
 
 ```html
-<ul class="children:block children:border-b children:border-gray children:last:border-b-0 children:hover:bg-gray">
+<ul class="children:block children:not-first:border-t children:border-gray children:hover:bg-gray">
   <li>
     First item
   </li>
@@ -133,4 +137,4 @@ You can also override `children:` classes on specific children if needed:
 </ul>
 ```
 
-The above depends on the order of the generated CSS, so make sure to add the `default` variant *after* the `children` one in the array of variants (as well as the `hover` variant after the `children-hover` variant if you want to override a `children-hover:` utility, etc.).
+The above depends on the order of the generated CSS, so make sure to add the `default` variant *after* the `children` one in the array of variants (as well as the `hover` variant after the `children-hover` variant if you want to override a `children:hover:*` utility, etc.).
