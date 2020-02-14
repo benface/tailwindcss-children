@@ -17,8 +17,8 @@ const generatePluginCss = (variants = [], tailwindOptions = {}, css = null) => {
         childrenPlugin,
         ({ addUtilities }) => {
           addUtilities(css ? css : {
-            '.block': {
-              'display': 'block',
+            '.w-1\\/2': {
+              'width': '50%',
             },
           }, variants);
         },
@@ -41,8 +41,8 @@ expect.extend({
 test('the plugin doesn’t do anything if the variants aren’t used', () => {
   return generatePluginCss().then(css => {
     expect(css).toMatchCss(`
-      .block {
-        display: block;
+      .w-1\\/2 {
+        width: 50%;
       }
     `);
   });
@@ -51,11 +51,11 @@ test('the plugin doesn’t do anything if the variants aren’t used', () => {
 test('the children variant is working', () => {
   return generatePluginCss(['children']).then(css => {
     expect(css).toMatchCss(`
-      .block {
-        display: block;
+      .w-1\\/2 {
+        width: 50%;
       }
-      .children\\:block > * {
-        display: block;
+      .children\\:w-1\\/2 > * {
+        width: 50%;
       }
     `);
   });
@@ -64,11 +64,11 @@ test('the children variant is working', () => {
 test('the children variant can be generated before the default variant', () => {
   return generatePluginCss(['children', 'default']).then(css => {
     expect(css).toMatchCss(`
-      .children\\:block > * {
-        display: block;
+      .children\\:w-1\\/2 > * {
+        width: 50%;
       }
-      .block {
-        display: block;
+      .w-1\\/2 {
+        width: 50%;
       }
     `);
   });
@@ -77,62 +77,62 @@ test('the children variant can be generated before the default variant', () => {
 test('all the variants are working', () => {
   return generatePluginCss(['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-not-first', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled']).then(css => {
     expect(css).toMatchCss(`
-      .children\\:block > * {
-        display: block;
+      .children\\:w-1\\/2 > * {
+        width: 50%;
       }
-      .block {
-        display: block;
+      .w-1\\/2 {
+        width: 50%;
       }
-      .children\\:first\\:block > :first-child {
-        display: block;
+      .children\\:first\\:w-1\\/2 > :first-child {
+        width: 50%;
       }
-      .children\\:last\\:block > :last-child {
-        display: block;
+      .children\\:last\\:w-1\\/2 > :last-child {
+        width: 50%;
       }
-      .children\\:odd\\:block > :nth-child(odd) {
-        display: block;
+      .children\\:odd\\:w-1\\/2 > :nth-child(odd) {
+        width: 50%;
       }
-      .children\\:even\\:block > :nth-child(even) {
-        display: block;
+      .children\\:even\\:w-1\\/2 > :nth-child(even) {
+        width: 50%;
       }
-      .children\\:not-first\\:block > * + * {
-        display: block;
+      .children\\:not-first\\:w-1\\/2 > * + * {
+        width: 50%;
       }
-      .children\\:hover\\:block > :hover {
-        display: block;
+      .children\\:hover\\:w-1\\/2 > :hover {
+        width: 50%;
       }
-      .hover\\:block:hover {
-        display: block;
+      .hover\\:w-1\\/2:hover {
+        width: 50%;
       }
-      .children\\:focus\\:block > :focus {
-        display: block;
+      .children\\:focus\\:w-1\\/2 > :focus {
+        width: 50%;
       }
-      .focus\\:block:focus {
-        display: block;
+      .focus\\:w-1\\/2:focus {
+        width: 50%;
       }
-      .children\\:focus-within\\:block > :focus-within {
-        display: block;
+      .children\\:focus-within\\:w-1\\/2 > :focus-within {
+        width: 50%;
       }
-      .focus-within\\:block:focus-within {
-        display: block;
+      .focus-within\\:w-1\\/2:focus-within {
+        width: 50%;
       }
-      .children\\:active\\:block > :active {
-        display: block;
+      .children\\:active\\:w-1\\/2 > :active {
+        width: 50%;
       }
-      .active\\:block:active {
-        display: block;
+      .active\\:w-1\\/2:active {
+        width: 50%;
       }
-      .children\\:visited\\:block > :visited {
-        display: block;
+      .children\\:visited\\:w-1\\/2 > :visited {
+        width: 50%;
       }
-      .visited\\:block:visited {
-        display: block;
+      .visited\\:w-1\\/2:visited {
+        width: 50%;
       }
-      .children\\:disabled\\:block > :disabled {
-        display: block;
+      .children\\:disabled\\:w-1\\/2 > :disabled {
+        width: 50%;
       }
-      .disabled\\:block:disabled {
-        display: block;
+      .disabled\\:w-1\\/2:disabled {
+        width: 50%;
       }
     `);
   });
@@ -141,84 +141,84 @@ test('all the variants are working', () => {
 test('all variants can be chained with the responsive variant', () => {
   return generatePluginCss(['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-not-first', 'children-hover', 'children-focus', 'children-focus-within', 'children-active', 'children-visited', 'children-disabled', 'responsive']).then(css => {
     expect(css).toMatchCss(`
-      .children\\:block > * {
-        display: block;
+      .children\\:w-1\\/2 > * {
+        width: 50%;
       }
-      .block {
-        display: block;
+      .w-1\\/2 {
+        width: 50%;
       }
-      .children\\:first\\:block > :first-child {
-        display: block;
+      .children\\:first\\:w-1\\/2 > :first-child {
+        width: 50%;
       }
-      .children\\:last\\:block > :last-child {
-        display: block;
+      .children\\:last\\:w-1\\/2 > :last-child {
+        width: 50%;
       }
-      .children\\:odd\\:block > :nth-child(odd) {
-        display: block;
+      .children\\:odd\\:w-1\\/2 > :nth-child(odd) {
+        width: 50%;
       }
-      .children\\:even\\:block > :nth-child(even) {
-        display: block;
+      .children\\:even\\:w-1\\/2 > :nth-child(even) {
+        width: 50%;
       }
-      .children\\:not-first\\:block > * + * {
-        display: block;
+      .children\\:not-first\\:w-1\\/2 > * + * {
+        width: 50%;
       }
-      .children\\:hover\\:block > :hover {
-        display: block;
+      .children\\:hover\\:w-1\\/2 > :hover {
+        width: 50%;
       }
-      .children\\:focus\\:block > :focus {
-        display: block;
+      .children\\:focus\\:w-1\\/2 > :focus {
+        width: 50%;
       }
-      .children\\:focus-within\\:block > :focus-within {
-        display: block;
+      .children\\:focus-within\\:w-1\\/2 > :focus-within {
+        width: 50%;
       }
-      .children\\:active\\:block > :active {
-        display: block;
+      .children\\:active\\:w-1\\/2 > :active {
+        width: 50%;
       }
-      .children\\:visited\\:block > :visited {
-        display: block;
+      .children\\:visited\\:w-1\\/2 > :visited {
+        width: 50%;
       }
-      .children\\:disabled\\:block > :disabled {
-        display: block;
+      .children\\:disabled\\:w-1\\/2 > :disabled {
+        width: 50%;
       }
       @media (min-width: 640px) {
-        .sm\\:children\\:block > * {
-          display: block;
+        .sm\\:children\\:w-1\\/2 > * {
+          width: 50%;
         }
-        .sm\\:block {
-          display: block;
+        .sm\\:w-1\\/2 {
+          width: 50%;
         }
-        .sm\\:children\\:first\\:block > :first-child {
-          display: block;
+        .sm\\:children\\:first\\:w-1\\/2 > :first-child {
+          width: 50%;
         }
-        .sm\\:children\\:last\\:block > :last-child {
-          display: block;
+        .sm\\:children\\:last\\:w-1\\/2 > :last-child {
+          width: 50%;
         }
-        .sm\\:children\\:odd\\:block > :nth-child(odd) {
-          display: block;
+        .sm\\:children\\:odd\\:w-1\\/2 > :nth-child(odd) {
+          width: 50%;
         }
-        .sm\\:children\\:even\\:block > :nth-child(even) {
-          display: block;
+        .sm\\:children\\:even\\:w-1\\/2 > :nth-child(even) {
+          width: 50%;
         }
-        .sm\\:children\\:not-first\\:block > * + * {
-          display: block;
+        .sm\\:children\\:not-first\\:w-1\\/2 > * + * {
+          width: 50%;
         }
-        .sm\\:children\\:hover\\:block > :hover {
-          display: block;
+        .sm\\:children\\:hover\\:w-1\\/2 > :hover {
+          width: 50%;
         }
-        .sm\\:children\\:focus\\:block > :focus {
-          display: block;
+        .sm\\:children\\:focus\\:w-1\\/2 > :focus {
+          width: 50%;
         }
-        .sm\\:children\\:focus-within\\:block > :focus-within {
-          display: block;
+        .sm\\:children\\:focus-within\\:w-1\\/2 > :focus-within {
+          width: 50%;
         }
-        .sm\\:children\\:active\\:block > :active {
-          display: block;
+        .sm\\:children\\:active\\:w-1\\/2 > :active {
+          width: 50%;
         }
-        .sm\\:children\\:visited\\:block > :visited {
-          display: block;
+        .sm\\:children\\:visited\\:w-1\\/2 > :visited {
+          width: 50%;
         }
-        .sm\\:children\\:disabled\\:block > :disabled {
-          display: block;
+        .sm\\:children\\:disabled\\:w-1\\/2 > :disabled {
+          width: 50%;
         }
       }
     `);
@@ -230,14 +230,14 @@ test('the variants work well with Tailwind’s prefix option', () => {
     prefix: 'tw-',
   }).then(css => {
     expect(css).toMatchCss(`
-      .children\\:tw-block > * {
-        display: block;
+      .children\\:tw-w-1\\/2 > * {
+        width: 50%;
       }
-      .tw-block {
-        display: block;
+      .tw-w-1\\/2 {
+        width: 50%;
       }
-      .children\\:first\\:tw-block > :first-child {
-        display: block;
+      .children\\:first\\:tw-w-1\\/2 > :first-child {
+        width: 50%;
       }
     `);
   });
