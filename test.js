@@ -75,7 +75,7 @@ test('the children variant can be generated before the default variant', () => {
 });
 
 test('all the variants are working', () => {
-  return generatePluginCss(['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-not-first', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled']).then(css => {
+  return generatePluginCss(['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-not-first', 'children-not-last', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled']).then(css => {
     expect(css).toMatchCss(`
       .children\\:w-1\\/2 > * {
         width: 50%;
@@ -95,7 +95,10 @@ test('all the variants are working', () => {
       .children\\:even\\:w-1\\/2 > :nth-child(even) {
         width: 50%;
       }
-      .children\\:not-first\\:w-1\\/2 > * + * {
+      .children\\:not-first\\:w-1\\/2 > :not(:first-child) {
+        width: 50%;
+      }
+      .children\\:not-last\\:w-1\\/2 > :not(:last-child) {
         width: 50%;
       }
       .children\\:hover\\:w-1\\/2 > :hover {
@@ -139,7 +142,7 @@ test('all the variants are working', () => {
 });
 
 test('all variants can be chained with the responsive variant', () => {
-  return generatePluginCss(['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-not-first', 'children-hover', 'children-focus', 'children-focus-within', 'children-active', 'children-visited', 'children-disabled', 'responsive']).then(css => {
+  return generatePluginCss(['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-not-first', 'children-not-last', 'children-hover', 'children-focus', 'children-focus-within', 'children-active', 'children-visited', 'children-disabled', 'responsive']).then(css => {
     expect(css).toMatchCss(`
       .children\\:w-1\\/2 > * {
         width: 50%;
@@ -159,7 +162,10 @@ test('all variants can be chained with the responsive variant', () => {
       .children\\:even\\:w-1\\/2 > :nth-child(even) {
         width: 50%;
       }
-      .children\\:not-first\\:w-1\\/2 > * + * {
+      .children\\:not-first\\:w-1\\/2 > :not(:first-child) {
+        width: 50%;
+      }
+      .children\\:not-last\\:w-1\\/2 > :not(:last-child) {
         width: 50%;
       }
       .children\\:hover\\:w-1\\/2 > :hover {
@@ -199,7 +205,10 @@ test('all variants can be chained with the responsive variant', () => {
         .sm\\:children\\:even\\:w-1\\/2 > :nth-child(even) {
           width: 50%;
         }
-        .sm\\:children\\:not-first\\:w-1\\/2 > * + * {
+        .sm\\:children\\:not-first\\:w-1\\/2 > :not(:first-child) {
+          width: 50%;
+        }
+        .sm\\:children\\:not-last\\:w-1\\/2 > :not(:last-child) {
           width: 50%;
         }
         .sm\\:children\\:hover\\:w-1\\/2 > :hover {

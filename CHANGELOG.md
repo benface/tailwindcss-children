@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2020-05-09
+
+### Added
+- Added a `children-not-last` variant
+
+### Changed
+- Changed the implementation of the `children-not-first` variant to `> :not(:first-child)` (instead of `> * + *`) for consistency with `children-not-last`
+
 ## [2.0.0] - 2020-02-05
 
 ### Added
@@ -40,7 +48,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-children/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-children/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/benface/tailwindcss-children/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/benface/tailwindcss-children/compare/v1.3.0...v2.0.0
 [1.3.0]: https://github.com/benface/tailwindcss-children/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/benface/tailwindcss-children/compare/v1.1.0...v1.2.0

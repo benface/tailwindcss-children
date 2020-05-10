@@ -22,7 +22,8 @@ module.exports = plugin(function({ addVariant }) {
   addVariant('children-last', childrenVariant('last', ':last-child'));
   addVariant('children-odd', childrenVariant('odd', ':nth-child(odd)'));
   addVariant('children-even', childrenVariant('even', ':nth-child(even)'));
-  addVariant('children-not-first', childrenVariant('not-first', '* + *'));
+  addVariant('children-not-first', childrenVariant('not-first', ':not(:first-child)'));
+  addVariant('children-not-last', childrenVariant('not-last', ':not(:last-child)'));
   addVariant('children-hover', childrenVariant('hover'));
   addVariant('children-focus', childrenVariant('focus'));
   addVariant('children-focus-within', childrenVariant('focus-within'));
