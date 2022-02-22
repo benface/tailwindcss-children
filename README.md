@@ -1,6 +1,6 @@
-# [BLACK LIVES MATTER](https://blacklivesmatters.carrd.co)
+# ⛔️ DEPRECATED
 
-### Be aware. Be angry. Do better. Demand change. Show your support any way you can. Click on the link above to find protests, petitions, and other ways to help. DO NOT LET IT GO SILENT.
+This plugin doesn’t work properly with Tailwind 3.0. Please use [`tailwind-children`](https://github.com/SamGoody/tailwind-children) instead. Thank you!
 
 # Children Variant Plugin for Tailwind CSS
 
